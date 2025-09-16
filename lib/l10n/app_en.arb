@@ -1,0 +1,124 @@
+{
+  "@@locale": "en",
+  "appTitle": "Subscription Manager",
+  "editSubscription": "Edit Subscription",
+  "addSubscription": "Add Subscription",
+  "serviceNameLabel": "Service name",
+  "serviceNameHint": "Netflix, Spotify, iCloud...",
+  "required": "Required",
+  "costLabel": "Cost",
+  "costHint": "e.g. 9.99",
+  "enterNumber": "Enter a number",
+  "mustBeGreaterThanZero": "Must be > 0",
+  "currencyLabel": "Currency (ISO code)",
+  "use3LetterCode": "Use 3-letter code (e.g. EUR, USD)",
+  "billingCycleLabel": "Billing cycle",
+  "intervalDaysLabel": "Interval (days)",
+  "nextRenewalDate": "Next renewal date",
+  "selectDate": "Select a date",
+  "pick": "Pick",
+  "categoryLabel": "Category (optional)",
+  "cancellationUrlLabel": "Cancellation / Manage URL (optional)",
+  "cancellationUrlHint": "https://account.example.com/subscriptions",
+  "invalidUrl": "Enter a valid URL (e.g. https://...)",
+  "notesLabel": "Notes (optional)",
+  "pleaseSelectNextRenewal": "Please select next renewal date",
+  "savedChanges": "Saved changes",
+  "added": "Added",
+  "failedWithError": "Failed: {error}",
+  "@failedWithError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "saveChanges": "Save changes",
+  "save": "Save",
+  "homeTitle": "My Subscriptions",
+  "settings": "Settings",
+  "navigationErrorTitle": "Navigation error",
+  "monthlyTotal": "Monthly: {amount}",
+  "@monthlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "yearlyTotal": "Yearly: {amount}",
+  "@yearlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "currenciesDiffer": "Currencies differ; totals are labels only",
+  "noSubscriptionsYet": "No subscriptions yet",
+  "addFirstSubscription": "Add your first subscription",
+  "manageCancelTooltip": "Manage/Cancel",
+  "deleteSubscriptionTooltip": "Delete",
+  "deletedSubscription": "Deleted \"{service}\"",
+  "@deletedSubscription": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "undo": "Undo",
+  "add": "Add",
+  "nextLabel": "next: {date}",
+  "@nextLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "cycleDaily": "daily",
+  "cycleWeekly": "weekly",
+  "cycleMonthly": "monthly",
+  "cycleYearly": "yearly",
+  "cycleCustom": "custom",
+  "defaultCurrencyLabel": "Default currency (ISO, e.g. EUR)",
+  "reminderLeadTime": "Reminder lead time (days):",
+  "notifyAtTime": "Notify at time",
+  "renewalReminderTitle": "Renewal approaching: {service}",
+  "@renewalReminderTitle": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "renewalReminderBody": "Renews on {date}",
+  "@renewalReminderBody": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "themeModeLabel": "Theme",
+  "themeModeSystem": "System default",
+  "themeModeLight": "Light",
+  "themeModeDark": "Dark",
+  "languageLabel": "Language",
+  "languageEnglish": "English",
+  "languageLatvian": "Latvian",
+  "languageRussian": "Russian",
+  "settingsSaved": "Settings saved",
+  "exportedTo": "Exported to {path}",
+  "@exportedTo": {
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "exportFailed": "Export failed: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "noBackupFound": "No backup found",
+  "importSuccessful": "Import successful",
+  "importFailed": "Import failed: {error}",
+  "@importFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubscriptions": "Export Subscriptions",
+  "importSubscriptions": "Import Subscriptions",
+  "selectDestination": "Select destination",
+  "selectBackupFile": "Select backup file",
+  "couldNotOpenLink": "Could not open link"
+}

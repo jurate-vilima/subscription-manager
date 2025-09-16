@@ -1,0 +1,125 @@
+{
+  "@@locale": "lv",
+  "appTitle": "Abonementu Pārvaldnieks",
+  "editSubscription": "Rediģēt abonementu",
+  "addSubscription": "Pievienot abonementu",
+  "serviceNameLabel": "Pakalpojuma nosaukums",
+  "serviceNameHint": "Netflix, Spotify, iCloud...",
+  "required": "Obligāts",
+  "costLabel": "Izmaksas",
+  "costHint": "piem. 9.99",
+  "enterNumber": "Ievadiet skaitli",
+  "mustBeGreaterThanZero": "Jābūt > 0",
+  "currencyLabel": "Valūta (ISO kods)",
+  "use3LetterCode": "Izmantojiet 3 burtu kodu (piem., EUR, USD)",
+  "billingCycleLabel": "Norēķinu cikls",
+  "intervalDaysLabel": "Intervāls (dienas)",
+  "nextRenewalDate": "Nākamais atjaunošanas datums",
+  "selectDate": "Izvēlieties datumu",
+  "pick": "Izvēlēties",
+  "categoryLabel": "Kategorija (neobligāti)",
+  "cancellationUrlLabel": "Atcelšanas/pārvaldības URL (neobligāti)",
+  "cancellationUrlHint": "https://account.example.com/subscriptions",
+  "invalidUrl": "Ievadiet derīgu URL (piem., https://...)",
+  "notesLabel": "Piezīmes (neobligāti)",
+  "pleaseSelectNextRenewal": "Lūdzu, izvēlieties nākamo atjaunošanas datumu",
+  "savedChanges": "Izmaiņas saglabātas",
+  "added": "Pievienots",
+  "failedWithError": "Neizdevās: {error}",
+  "@failedWithError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "saveChanges": "Saglabāt izmaiņas",
+  "save": "Saglabāt",
+  "homeTitle": "Mani abonementi",
+  "settings": "Iestatījumi",
+  "navigationErrorTitle": "Navigācijas kļūda",
+  "monthlyTotal": "Mēnesī: {amount}",
+  "@monthlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "yearlyTotal": "Gadā: {amount}",
+  "@yearlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "currenciesDiffer": "Valūtas atšķiras; kopsummas ir tikai informatīvas",
+  "noSubscriptionsYet": "Vēl nav abonementu",
+  "addFirstSubscription": "Pievienojiet savu pirmo abonementu",
+  "manageCancelTooltip": "Pārvaldīt/Atcelt",
+  "deleteSubscriptionTooltip": "Dzēst",
+  "deletedSubscription": "Dzēsts \"{service}\"",
+  "@deletedSubscription": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "undo": "Atsaukt",
+  "add": "Pievienot",
+  "nextLabel": "nākamais: {date}",
+  "@nextLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "cycleDaily": "dienas",
+  "cycleWeekly": "nedēļas",
+  "cycleMonthly": "mēneša",
+  "cycleYearly": "gada",
+  "cycleCustom": "pielāgots",
+  "defaultCurrencyLabel": "Noklusējuma valūta (ISO, piem. EUR)",
+  "reminderLeadTime": "Paziņojuma priekšlaiks (dienas):",
+  "notifyAtTime": "Paziņot laikā",
+  "renewalReminderTitle": "Drīz atjaunosies: {service}",
+  "@renewalReminderTitle": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "renewalReminderBody": "Atjaunošana notiks {date}",
+  "@renewalReminderBody": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "themeModeLabel": "Tēma",
+  "themeModeSystem": "Sistēmas noklusējums",
+  "themeModeLight": "Gaišs",
+  "themeModeDark": "Tumšs",
+  "languageLabel": "Valoda",
+  "languageEnglish": "Angļu",
+  "languageLatvian": "Latviešu",
+  "languageRussian": "Krievu",
+  "settingsSaved": "Iestatījumi saglabāti",
+  "exportedTo": "Eksportēts uz {path}",
+  "@exportedTo": {
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "exportFailed": "Eksports neizdevās: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "noBackupFound": "Rezerves kopija nav atrasta",
+  "importSuccessful": "Imports veiksmīgs",
+  "importFailed": "Imports neizdevās: {error}",
+  "@importFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubscriptions": "Eksportēt abonementus",
+  "importSubscriptions": "Importēt abonementus",
+  "selectDestination": "Izvēlieties galamērķi",
+  "selectBackupFile": "Izvēlieties rezerves failu",
+  "couldNotOpenLink": "Neizdevās atvērt saiti"
+}
+

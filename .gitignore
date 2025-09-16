@@ -1,0 +1,47 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+build/
+coverage/
+
+# Generated localizations (keep ARB files)
+lib/l10n/*.dart
+!lib/l10n/*.arb
+
+# Plugin metadata
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Android
+android/local.properties
+android/key.properties
+*.jks
+*.keystore
+.gradle/
+
+# iOS/macOS (auto-generated)
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GeneratedPluginRegistrant.*
+macos/Flutter/GeneratedPluginRegistrant.*
+
+# Windows/Linux (auto-generated plugin registrants)
+windows/flutter/generated_plugin_registrant.*
+linux/flutter/generated_plugin_registrant.*
+
+# Flutter metadata
+.metadata
+
+# Logs / env
+*.log
+.env

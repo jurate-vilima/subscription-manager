@@ -1,0 +1,125 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Менеджер подписок",
+  "editSubscription": "Редактировать подписку",
+  "addSubscription": "Добавить подписку",
+  "serviceNameLabel": "Название сервиса",
+  "serviceNameHint": "Netflix, Spotify, iCloud...",
+  "required": "Обязательно",
+  "costLabel": "Стоимость",
+  "costHint": "напр. 9,99",
+  "enterNumber": "Введите число",
+  "mustBeGreaterThanZero": "Должно быть > 0",
+  "currencyLabel": "Валюта (код ISO)",
+  "use3LetterCode": "Используйте 3-буквенный код (например, EUR, USD)",
+  "billingCycleLabel": "Период оплаты",
+  "intervalDaysLabel": "Интервал (дни)",
+  "nextRenewalDate": "Дата следующего продления",
+  "selectDate": "Выберите дату",
+  "pick": "Выбрать",
+  "categoryLabel": "Категория (необязательно)",
+  "cancellationUrlLabel": "URL отмены/управления (необязательно)",
+  "cancellationUrlHint": "https://account.example.com/subscriptions",
+  "invalidUrl": "Введите корректный URL (например, https://...)",
+  "notesLabel": "Заметки (необязательно)",
+  "pleaseSelectNextRenewal": "Пожалуйста, выберите дату следующего продления",
+  "savedChanges": "Изменения сохранены",
+  "added": "Добавлено",
+  "failedWithError": "Ошибка: {error}",
+  "@failedWithError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "saveChanges": "Сохранить изменения",
+  "save": "Сохранить",
+  "homeTitle": "Мои подписки",
+  "settings": "Настройки",
+  "navigationErrorTitle": "Ошибка навигации",
+  "monthlyTotal": "В месяц: {amount}",
+  "@monthlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "yearlyTotal": "В год: {amount}",
+  "@yearlyTotal": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "currenciesDiffer": "Валюты различаются; суммы указаны условно",
+  "noSubscriptionsYet": "Подписок пока нет",
+  "addFirstSubscription": "Добавьте свою первую подписку",
+  "manageCancelTooltip": "Управление/Отмена",
+  "deleteSubscriptionTooltip": "Удалить",
+  "deletedSubscription": "Удалено \"{service}\"",
+  "@deletedSubscription": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "undo": "Отменить",
+  "add": "Добавить",
+  "nextLabel": "след.: {date}",
+  "@nextLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "cycleDaily": "ежедневно",
+  "cycleWeekly": "еженедельно",
+  "cycleMonthly": "ежемесячно",
+  "cycleYearly": "ежегодно",
+  "cycleCustom": "произвольный",
+  "defaultCurrencyLabel": "Валюта по умолчанию (ISO, напр. EUR)",
+  "reminderLeadTime": "Предупреждение за (дней):",
+  "notifyAtTime": "Уведомлять в",
+  "renewalReminderTitle": "Скоро продление: {service}",
+  "@renewalReminderTitle": {
+    "placeholders": {
+      "service": {}
+    }
+  },
+  "renewalReminderBody": "Продление {date}",
+  "@renewalReminderBody": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "themeModeLabel": "Тема",
+  "themeModeSystem": "Системная",
+  "themeModeLight": "Светлая",
+  "themeModeDark": "Тёмная",
+  "languageLabel": "Язык",
+  "languageEnglish": "Английский",
+  "languageLatvian": "Латышский",
+  "languageRussian": "Русский",
+  "settingsSaved": "Настройки сохранены",
+  "exportedTo": "Экспортировано в {path}",
+  "@exportedTo": {
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "exportFailed": "Не удалось экспортировать: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "noBackupFound": "Резервная копия не найдена",
+  "importSuccessful": "Импорт выполнен",
+  "importFailed": "Не удалось импортировать: {error}",
+  "@importFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubscriptions": "Экспорт подписок",
+  "importSubscriptions": "Импорт подписок",
+  "selectDestination": "Выберите место назначения",
+  "selectBackupFile": "Выберите файл резервной копии",
+  "couldNotOpenLink": "Не удалось открыть ссылку"
+}
+

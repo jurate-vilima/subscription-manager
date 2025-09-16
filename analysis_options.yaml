@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/**.g.dart
+    - lib/l10n/**.dart
+
+linter:
+  rules:
+    always_use_package_imports: true
+    prefer_final_locals: true
+    avoid_print: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+
+    unawaited_futures: true        
+    cancel_subscriptions: true    
+    unnecessary_late: true
