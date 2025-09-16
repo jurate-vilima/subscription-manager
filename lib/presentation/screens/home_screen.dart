@@ -71,7 +71,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-
           Expanded(
             child: vm.items.isEmpty
                 ? Center(

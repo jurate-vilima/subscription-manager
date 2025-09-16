@@ -24,11 +24,11 @@ class SubscriptionListViewModel extends ChangeNotifier {
     NotificationService? notificationService,
     Uuid? uuid,
     Future<void> Function(Iterable<Subscription>)? rescheduler,
-  }) : _repo = repo ?? SubscriptionRepository(),
-       _settingsRepo = settingsRepo ?? SettingsRepository(),
-       _notificationService = notificationService ?? NotificationService(),
-       _uuid = uuid ?? const Uuid(),
-       _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll;
+  })  : _repo = repo ?? SubscriptionRepository(),
+        _settingsRepo = settingsRepo ?? SettingsRepository(),
+        _notificationService = notificationService ?? NotificationService(),
+        _uuid = uuid ?? const Uuid(),
+        _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll;
 
   List<Subscription> _items = [];
   List<Subscription> get items => _items;
@@ -158,8 +158,8 @@ class SubscriptionListViewModel extends ChangeNotifier {
     final insertAt = _lastDeletedIndex < 0
         ? 0
         : (_lastDeletedIndex > _items.length
-              ? _items.length
-              : _lastDeletedIndex);
+            ? _items.length
+            : _lastDeletedIndex);
 
     _items.insert(insertAt, s);
     await _repo.add(s);

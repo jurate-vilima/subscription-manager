@@ -14,9 +14,9 @@ class SettingsViewModel extends ChangeNotifier {
     SettingsRepository? settingsRepo,
     SubscriptionRepository? subscriptionRepo,
     Future<void> Function(Iterable<Subscription>)? rescheduler,
-  }) : _repo = settingsRepo ?? SettingsRepository(),
-       _subRepo = subscriptionRepo ?? SubscriptionRepository(),
-       _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll {
+  })  : _repo = settingsRepo ?? SettingsRepository(),
+        _subRepo = subscriptionRepo ?? SubscriptionRepository(),
+        _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll {
     _state = _repo.current;
   }
 

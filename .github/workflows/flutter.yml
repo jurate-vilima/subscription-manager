@@ -31,5 +31,11 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-      - name: Tests
-        run: flutter test --no-pub
+      - name: Run tests (if any)
+        shell: bash
+        run: |
+          if compgen -G "test/**/*_test.dart" > /dev/null || compgen -G "test/*_test.dart" > /dev/null; then
+            flutter test --no-pub
+          else
+            echo "No tests found, skipping."
+          fi
