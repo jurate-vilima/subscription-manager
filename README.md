@@ -34,10 +34,6 @@ flutter test
 flutter run
 ```
 
-## 📂 Project Scripts
-
-- CI: [`.github/workflows/flutter.yml`](.github/workflows/flutter.yml) runs format check, analyze, and tests automatically on push/PR.
-
 ## 📸 Screenshots
 <p float="left">
   <img src="docs/screenshots/home.png" width="200" />
