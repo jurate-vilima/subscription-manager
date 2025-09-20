@@ -70,18 +70,14 @@ DateTime _addCycle(
 
     case BillingCycle.custom:
       {
-        final days = customCycleDays ?? 0;
-        if (days > 0) {
-          return date.add(Duration(days: days));
+        if (customCycleDays == null || customCycleDays <= 0) {
+          throw ArgumentError.value(
+            customCycleDays,
+            'customCycleDays',
+            'Must be a positive integer when cycle == BillingCycle.custom',
+          );
         }
-
-        final a = anchorDay ?? date.day;
-        final rawNextMonth = date.month + 1;
-        final nextYear = date.year + (rawNextMonth > 12 ? 1 : 0);
-        final nextMonth = ((rawNextMonth - 1) % 12) + 1;
-        final last = _lastDayOfMonth(nextYear, nextMonth);
-        final d = (a <= last) ? a : last;
-        return _withSameTime(date, nextYear, nextMonth, d);
+        return date.add(Duration(days: customCycleDays));
       }
   }
 }
