@@ -35,6 +35,8 @@ class Subscription {
   @HiveField(9)
   final int? customCycleDays;
 
+  @HiveField(10)
+  final int? billingAnchorDay; 
   const Subscription({
     required this.id,
     required this.serviceName,
@@ -46,6 +48,7 @@ class Subscription {
     this.notes,
     this.cancellationUrl,
     this.customCycleDays,
+    this.billingAnchorDay, 
   });
 
   Subscription copyWith({
@@ -59,6 +62,7 @@ class Subscription {
     String? notes,
     String? cancellationUrl,
     int? customCycleDays,
+    int? billingAnchorDay, 
   }) {
     return Subscription(
       id: id ?? this.id,
@@ -71,6 +75,7 @@ class Subscription {
       notes: notes ?? this.notes,
       cancellationUrl: cancellationUrl ?? this.cancellationUrl,
       customCycleDays: customCycleDays ?? this.customCycleDays,
+      billingAnchorDay: billingAnchorDay ?? this.billingAnchorDay, 
     );
   }
 }
