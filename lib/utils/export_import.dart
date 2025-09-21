@@ -17,6 +17,7 @@ class ExportImport {
             'notes': s.notes,
             'cancellationUrl': s.cancellationUrl,
             'customCycleDays': s.customCycleDays,
+            'billingAnchorDay': s.billingAnchorDay,
           },
         )
         .toList();
@@ -42,6 +43,7 @@ class ExportImport {
         notes: map['notes'] as String?,
         cancellationUrl: map['cancellationUrl'] as String?,
         customCycleDays: (map['customCycleDays'] as num?)?.toInt(),
+        billingAnchorDay: (map['billingAnchorDay'] as num?)?.toInt(),
       );
     }).toList();
   }
