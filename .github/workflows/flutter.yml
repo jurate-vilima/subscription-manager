@@ -1,0 +1,22 @@
+name: flutter-ci
+on:
+  push:
+    branches: [ main, chore/**, feat/**, fix/** ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter gen-l10n
+
+      - run: dart format --output=none --set-exit-if-changed lib test tool
+      
+      - run: flutter analyze
+      - run: flutter test --coverage
