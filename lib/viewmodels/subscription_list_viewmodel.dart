@@ -50,6 +50,7 @@ class SubscriptionListViewModel extends ChangeNotifier {
         start: s.nextRenewalDate,
         cycle: s.billingCycle,
         customCycleDays: s.customCycleDays,
+        anchorDay: s.billingAnchorDay,
         now: now,
       );
       if (rolled != s.nextRenewalDate) {
@@ -87,6 +88,10 @@ class SubscriptionListViewModel extends ChangeNotifier {
       notes: notes,
       cancellationUrl: url,
       customCycleDays: customCycleDays,
+      billingAnchorDay:
+          (cycle == BillingCycle.monthly || cycle == BillingCycle.yearly)
+              ? nextRenewal.day
+              : null,
     );
 
     await _repo.add(s);
