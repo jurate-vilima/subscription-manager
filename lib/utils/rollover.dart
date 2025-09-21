@@ -63,8 +63,9 @@ DateTime _addCycle(
     case BillingCycle.yearly:
       {
         final nextYear = date.year + 1;
+        final a = anchorDay ?? date.day;
         final last = _lastDayOfMonth(nextYear, date.month);
-        final d = (date.day <= last) ? date.day : last;
+        final d = (a <= last) ? a : last;
         return _withSameTime(date, nextYear, date.month, d);
       }
 
