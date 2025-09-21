@@ -113,22 +113,27 @@ class SubscriptionListViewModel extends ChangeNotifier {
   }
 
   Future<void> update(Subscription updated, AppLocalizations l10n) async {
-    await _repo.update(updated);
+    final withAnchor = (updated.billingCycle == BillingCycle.monthly ||
+            updated.billingCycle == BillingCycle.yearly)
+        ? updated.copyWith(billingAnchorDay: updated.nextRenewalDate.day)
+        : updated.copyWith(billingAnchorDay: null);
 
-    final idx = _items.indexWhere((e) => e.id == updated.id);
+    await _repo.update(withAnchor);
+
+    final idx = _items.indexWhere((e) => e.id == withAnchor.id);
     if (idx >= 0) {
-      _items[idx] = updated;
+      _items[idx] = withAnchor;
       _sortByRenewal();
 
       final settings = _settingsRepo.current;
-      await _notificationService.cancelForSubscription(updated.id);
+      await _notificationService.cancelForSubscription(withAnchor.id);
       await _notificationService.scheduleRenewalReminder(
-        subscriptionId: updated.id,
-        title: l10n.renewalReminderTitle(updated.serviceName),
+        subscriptionId: withAnchor.id,
+        title: l10n.renewalReminderTitle(withAnchor.serviceName),
         body: l10n.renewalReminderBody(
-          Formatters.dateShort(updated.nextRenewalDate),
+          Formatters.dateShort(withAnchor.nextRenewalDate),
         ),
-        renewalDate: updated.nextRenewalDate,
+        renewalDate: withAnchor.nextRenewalDate,
         leadDays: settings.leadDays,
         notifyHour: settings.notifyHour,
         notifyMinute: settings.notifyMinute,
