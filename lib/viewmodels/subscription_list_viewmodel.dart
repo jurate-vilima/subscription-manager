@@ -113,10 +113,27 @@ class SubscriptionListViewModel extends ChangeNotifier {
   }
 
   Future<void> update(Subscription updated, AppLocalizations l10n) async {
-    final withAnchor = (updated.billingCycle == BillingCycle.monthly ||
-            updated.billingCycle == BillingCycle.yearly)
+    // Авто-установка/сброс якорного дня.
+    final bool isAnchoredCycle = updated.billingCycle == BillingCycle.monthly ||
+        updated.billingCycle == BillingCycle.yearly;
+
+    final Subscription withAnchor = isAnchoredCycle
         ? updated.copyWith(billingAnchorDay: updated.nextRenewalDate.day)
-        : updated.copyWith(billingAnchorDay: null);
+        // ВАЖНО: copyWith не умеет ставить null (использует ??),
+        // поэтому создаём новый объект вручную, чтобы гарантированно очистить поле.
+        : Subscription(
+            id: updated.id,
+            serviceName: updated.serviceName,
+            cost: updated.cost,
+            currency: updated.currency,
+            billingCycle: updated.billingCycle,
+            nextRenewalDate: updated.nextRenewalDate,
+            category: updated.category,
+            notes: updated.notes,
+            cancellationUrl: updated.cancellationUrl,
+            customCycleDays: updated.customCycleDays,
+            billingAnchorDay: null,
+          );
 
     await _repo.update(withAnchor);
 
