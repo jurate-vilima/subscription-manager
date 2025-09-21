@@ -9,7 +9,9 @@ import 'package:subscription_manager/models/subscription.dart';
 import 'package:subscription_manager/models/billing_cycle.dart';
 
 class MockSubRepo extends Mock implements SubscriptionRepository {}
+
 class MockSettingsRepo extends Mock implements SettingsRepository {}
+
 class MockNotif extends Mock implements NotificationService {}
 
 void main() {
@@ -43,20 +45,20 @@ void main() {
     when(() => subRepo.getAll()).thenReturn([s]);
     when(() => subRepo.update(any<Subscription>())).thenAnswer((_) async {});
     when(() => notif.scheduleRenewalReminder(
-      subscriptionId: any(named: 'subscriptionId'),
-      title: any(named: 'title'),
-      body: any(named: 'body'),
-      renewalDate: any(named: 'renewalDate'),
-      leadDays: any(named: 'leadDays'),
-      notifyHour: any(named: 'notifyHour'),
-      notifyMinute: any(named: 'notifyMinute'),
-    )).thenAnswer((_) async {});
+          subscriptionId: any(named: 'subscriptionId'),
+          title: any(named: 'title'),
+          body: any(named: 'body'),
+          renewalDate: any(named: 'renewalDate'),
+          leadDays: any(named: 'leadDays'),
+          notifyHour: any(named: 'notifyHour'),
+          notifyMinute: any(named: 'notifyMinute'),
+        )).thenAnswer((_) async {});
 
     final vm = SubscriptionListViewModel(
       repo: subRepo,
       settingsRepo: settingsRepo,
       notificationService: notif,
-      rescheduler: (_) async {}, 
+      rescheduler: (_) async {},
     );
 
     await vm.load();
