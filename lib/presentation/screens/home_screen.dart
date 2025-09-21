@@ -46,16 +46,20 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        l.monthlyTotal(
-                          Formatters.money(m, settings.defaultCurrency),
+                      Text(l.monthlyTotal(
+                        Formatters.money(
+                          m,
+                          settings.defaultCurrency,
+                          locale: settings.localeCode,
                         ),
-                      ),
-                      Text(
-                        l.yearlyTotal(
-                          Formatters.money(y, settings.defaultCurrency),
+                      )),
+                      Text(l.yearlyTotal(
+                        Formatters.money(
+                          y,
+                          settings.defaultCurrency,
+                          locale: settings.localeCode,
                         ),
-                      ),
+                      )),
                     ],
                   ),
                   if (mixed)
