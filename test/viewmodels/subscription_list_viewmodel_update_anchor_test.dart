@@ -31,13 +31,65 @@ void main() {
     ));
   });
 
-  test('monthly/yearly -> anchor = nextRenewal.day', () async {
+  test('update(monthly) sets anchor to nextRenewal.day when no previous anchor',
+      () async {
     final repo = MockSubRepo();
     final settings = MockSettingsRepo();
     final notif = MockNotif();
 
     final s = Subscription(
-      id: 'id',
+      id: 'id1',
+      serviceName: 'S',
+      cost: 1,
+      currency: 'EUR',
+      billingCycle: BillingCycle.monthly,
+      nextRenewalDate: DateTime(2025, 2, 28, 9, 0),
+      billingAnchorDay: null,
+    );
+
+    when(() => repo.getAll()).thenReturn([s]);
+    when(() => repo.update(any<Subscription>())).thenAnswer((_) async {});
+    when(() => settings.current).thenReturn(const AppSettings());
+    when(() => notif.cancelForSubscription(any())).thenAnswer((_) async {});
+    when(() => notif.scheduleRenewalReminder(
+          subscriptionId: any(named: 'subscriptionId'),
+          title: any(named: 'title'),
+          body: any(named: 'body'),
+          renewalDate: any(named: 'renewalDate'),
+          leadDays: any(named: 'leadDays'),
+          notifyHour: any(named: 'notifyHour'),
+          notifyMinute: any(named: 'notifyMinute'),
+        )).thenAnswer((_) async {});
+
+    final vm = SubscriptionListViewModel(
+      repo: repo,
+      settingsRepo: settings,
+      notificationService: notif,
+      rescheduler: (_) async {},
+    );
+
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+
+    await vm.load();
+    await vm.update(
+      s.copyWith(
+        nextRenewalDate: DateTime(2025, 2, 28, 9, 0),
+        billingCycle: BillingCycle.monthly,
+        billingAnchorDay: null,
+      ),
+      l10n,
+    );
+
+    expect(vm.items.single.billingAnchorDay, 28);
+  });
+
+  test('update(monthly) preserves existing billingAnchorDay', () async {
+    final repo = MockSubRepo();
+    final settings = MockSettingsRepo();
+    final notif = MockNotif();
+
+    final s = Subscription(
+      id: 'id2',
       serviceName: 'S',
       cost: 1,
       currency: 'EUR',
@@ -74,12 +126,12 @@ void main() {
       s.copyWith(
         nextRenewalDate: DateTime(2025, 2, 28, 9, 0),
         billingCycle: BillingCycle.monthly,
-        billingAnchorDay: null, // будет выставлен на 28 автоматически
+        billingAnchorDay: null,
       ),
       l10n,
     );
 
-    expect(vm.items.single.billingAnchorDay, 28);
+    expect(vm.items.single.billingAnchorDay, 31);
   });
 
   test('daily/weekly/custom -> anchor = null', () async {
@@ -88,7 +140,7 @@ void main() {
     final notif = MockNotif();
 
     final s = Subscription(
-      id: 'id',
+      id: 'id3',
       serviceName: 'S',
       cost: 1,
       currency: 'EUR',
@@ -125,6 +177,7 @@ void main() {
       s.copyWith(
         billingCycle: BillingCycle.custom,
         nextRenewalDate: s.nextRenewalDate,
+        customCycleDays: 10,
       ),
       l10n,
     );

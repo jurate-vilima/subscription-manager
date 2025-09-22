@@ -3,6 +3,8 @@ import 'package:subscription_manager/models/billing_cycle.dart';
 
 part 'subscription.g.dart';
 
+const _unset = Object();
+
 @HiveType(typeId: 0)
 class Subscription {
   @HiveField(0)
@@ -37,6 +39,7 @@ class Subscription {
 
   @HiveField(10)
   final int? billingAnchorDay;
+
   const Subscription({
     required this.id,
     required this.serviceName,
@@ -58,11 +61,11 @@ class Subscription {
     String? currency,
     BillingCycle? billingCycle,
     DateTime? nextRenewalDate,
-    String? category,
-    String? notes,
-    String? cancellationUrl,
-    int? customCycleDays,
-    int? billingAnchorDay,
+    Object? category = _unset,
+    Object? notes = _unset,
+    Object? cancellationUrl = _unset,
+    Object? customCycleDays = _unset,
+    Object? billingAnchorDay = _unset,
   }) {
     return Subscription(
       id: id ?? this.id,
@@ -71,11 +74,18 @@ class Subscription {
       currency: currency ?? this.currency,
       billingCycle: billingCycle ?? this.billingCycle,
       nextRenewalDate: nextRenewalDate ?? this.nextRenewalDate,
-      category: category ?? this.category,
-      notes: notes ?? this.notes,
-      cancellationUrl: cancellationUrl ?? this.cancellationUrl,
-      customCycleDays: customCycleDays ?? this.customCycleDays,
-      billingAnchorDay: billingAnchorDay ?? this.billingAnchorDay,
+      category:
+          identical(category, _unset) ? this.category : category as String?,
+      notes: identical(notes, _unset) ? this.notes : notes as String?,
+      cancellationUrl: identical(cancellationUrl, _unset)
+          ? this.cancellationUrl
+          : cancellationUrl as String?,
+      customCycleDays: identical(customCycleDays, _unset)
+          ? this.customCycleDays
+          : customCycleDays as int?,
+      billingAnchorDay: identical(billingAnchorDay, _unset)
+          ? this.billingAnchorDay
+          : billingAnchorDay as int?,
     );
   }
 }

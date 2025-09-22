@@ -1,5 +1,4 @@
 import 'package:uuid/uuid.dart';
-
 import 'package:subscription_manager/data/subscription_repository.dart';
 import 'package:subscription_manager/data/settings_repository.dart';
 import 'package:subscription_manager/models/subscription.dart';
@@ -17,6 +16,7 @@ class SubscriptionListViewModel extends ChangeNotifier {
   final NotificationService _notificationService;
   final Uuid _uuid;
   final Future<void> Function(Iterable<Subscription>) _reschedule;
+  final DateTime Function() _now;
 
   SubscriptionListViewModel({
     SubscriptionRepository? repo,
@@ -24,11 +24,13 @@ class SubscriptionListViewModel extends ChangeNotifier {
     NotificationService? notificationService,
     Uuid? uuid,
     Future<void> Function(Iterable<Subscription>)? rescheduler,
+    DateTime Function()? nowProvider,
   })  : _repo = repo ?? SubscriptionRepository(),
         _settingsRepo = settingsRepo ?? SettingsRepository(),
         _notificationService = notificationService ?? NotificationService(),
         _uuid = uuid ?? const Uuid(),
-        _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll;
+        _reschedule = rescheduler ?? RenewalScheduler.rescheduleAll,
+        _now = nowProvider ?? DateTime.now;
 
   List<Subscription> _items = [];
   List<Subscription> get items => _items;
@@ -42,7 +44,7 @@ class SubscriptionListViewModel extends ChangeNotifier {
 
   Future<void> load() async {
     _items = _repo.getAll();
-    final now = DateTime.now();
+    final now = _now();
 
     for (var i = 0; i < _items.length; i++) {
       final s = _items[i];
@@ -77,6 +79,11 @@ class SubscriptionListViewModel extends ChangeNotifier {
     int? customCycleDays,
     required AppLocalizations l10n,
   }) async {
+    if (cycle == BillingCycle.custom &&
+        (customCycleDays == null || customCycleDays <= 0)) {
+      throw ArgumentError('customCycleDays must be > 0 for custom cycle');
+    }
+
     final s = Subscription(
       id: _uuid.v4(),
       serviceName: serviceName,
@@ -113,27 +120,24 @@ class SubscriptionListViewModel extends ChangeNotifier {
   }
 
   Future<void> update(Subscription updated, AppLocalizations l10n) async {
-    // Авто-установка/сброс якорного дня.
+    if (updated.billingCycle == BillingCycle.custom) {
+      final d = updated.customCycleDays;
+      if (d == null || d <= 0) {
+        throw ArgumentError('customCycleDays must be > 0 for custom cycle');
+      }
+    }
+
     final bool isAnchoredCycle = updated.billingCycle == BillingCycle.monthly ||
         updated.billingCycle == BillingCycle.yearly;
 
-    final Subscription withAnchor = isAnchoredCycle
-        ? updated.copyWith(billingAnchorDay: updated.nextRenewalDate.day)
-        // ВАЖНО: copyWith не умеет ставить null (использует ??),
-        // поэтому создаём новый объект вручную, чтобы гарантированно очистить поле.
-        : Subscription(
-            id: updated.id,
-            serviceName: updated.serviceName,
-            cost: updated.cost,
-            currency: updated.currency,
-            billingCycle: updated.billingCycle,
-            nextRenewalDate: updated.nextRenewalDate,
-            category: updated.category,
-            notes: updated.notes,
-            cancellationUrl: updated.cancellationUrl,
-            customCycleDays: updated.customCycleDays,
-            billingAnchorDay: null,
-          );
+    final int oldIdx = _items.indexWhere((e) => e.id == updated.id);
+    final int? oldAnchor = oldIdx >= 0 ? _items[oldIdx].billingAnchorDay : null;
+
+    final int? targetAnchor =
+        isAnchoredCycle ? (oldAnchor ?? updated.nextRenewalDate.day) : null;
+
+    final Subscription withAnchor =
+        updated.copyWith(billingAnchorDay: targetAnchor);
 
     await _repo.update(withAnchor);
 
@@ -209,6 +213,20 @@ class SubscriptionListViewModel extends ChangeNotifier {
     await _repo.add(s);
     _items.add(s);
     _sortByRenewal();
+
+    final settings = _settingsRepo.current;
+    final l10n = await AppLocalizations.delegate.load(
+      WidgetsBinding.instance.platformDispatcher.locale,
+    );
+    await _notificationService.scheduleRenewalReminder(
+      subscriptionId: s.id,
+      title: l10n.renewalReminderTitle(s.serviceName),
+      body: l10n.renewalReminderBody(Formatters.dateShort(s.nextRenewalDate)),
+      renewalDate: s.nextRenewalDate,
+      leadDays: settings.leadDays,
+      notifyHour: settings.notifyHour,
+      notifyMinute: settings.notifyMinute,
+    );
   }
 
   Future<void> replaceAllFromImport(List<Subscription> newItems) async {
@@ -220,21 +238,5 @@ class SubscriptionListViewModel extends ChangeNotifier {
     }
     _sortByRenewal();
     notifyListeners();
-
-    final settings = _settingsRepo.current;
-    final l10n = await AppLocalizations.delegate.load(
-      WidgetsBinding.instance.platformDispatcher.locale,
-    );
-    for (final s in _items) {
-      await _notificationService.scheduleRenewalReminder(
-        subscriptionId: s.id,
-        title: l10n.renewalReminderTitle(s.serviceName),
-        body: l10n.renewalReminderBody(Formatters.dateShort(s.nextRenewalDate)),
-        renewalDate: s.nextRenewalDate,
-        leadDays: settings.leadDays,
-        notifyHour: settings.notifyHour,
-        notifyMinute: settings.notifyMinute,
-      );
-    }
   }
 }
