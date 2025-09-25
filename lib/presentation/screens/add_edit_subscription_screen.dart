@@ -137,6 +137,7 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
             padding: const EdgeInsets.all(16),
             children: [
               TextFormField(
+                key: const ValueKey('serviceNameField'),
                 controller: _serviceNameCtrl,
                 decoration: InputDecoration(
                   labelText: l.serviceNameLabel,
@@ -148,6 +149,7 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                key: const ValueKey('costField'),
                 controller: _costCtrl,
                 decoration: InputDecoration(
                   labelText: l.costLabel,
@@ -166,6 +168,7 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                key: const ValueKey('currencyField'),
                 controller: _currencyCtrl,
                 decoration: InputDecoration(labelText: l.currencyLabel),
                 textCapitalization: TextCapitalization.characters,
@@ -195,6 +198,7 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
               if (_cycle == BillingCycle.custom) ...[
                 const SizedBox(height: 12),
                 TextFormField(
+                  key: const ValueKey('intervalField'),
                   controller: _intervalCtrl,
                   decoration: InputDecoration(labelText: l.intervalDaysLabel),
                   keyboardType: TextInputType.number,
@@ -226,11 +230,13 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                key: const ValueKey('categoryField'),
                 controller: _categoryCtrl,
                 decoration: InputDecoration(labelText: l.categoryLabel),
               ),
               const SizedBox(height: 12),
               TextFormField(
+                key: const ValueKey('urlField'),
                 controller: _urlCtrl,
                 decoration: InputDecoration(
                   labelText: l.cancellationUrlLabel,
@@ -240,6 +246,7 @@ class _AddEditSubscriptionScreenState extends State<AddEditSubscriptionScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                key: const ValueKey('notesField'),
                 controller: _notesCtrl,
                 decoration: InputDecoration(labelText: l.notesLabel),
                 maxLines: 3,
