@@ -11,10 +11,10 @@ import 'package:uuid/uuid.dart';
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
-  NotificationService._internal();
+  NotificationService._internal({FlutterLocalNotificationsPlugin? plugin})
+      : _plugin = plugin ?? FlutterLocalNotificationsPlugin();
 
-  final FlutterLocalNotificationsPlugin _plugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin _plugin;
 
   bool _initialized = false;
 
@@ -209,4 +209,10 @@ class NotificationService {
   }
 
   Future<void> cancelAll() => _plugin.cancelAll();
+
+  @visibleForTesting
+  void resetForTesting({FlutterLocalNotificationsPlugin? plugin}) {
+    _plugin = plugin ?? FlutterLocalNotificationsPlugin();
+    _initialized = false;
+  }
 }
