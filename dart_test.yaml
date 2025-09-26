@@ -1,0 +1,4 @@
+tags:
+  integration:
+    description: Tests that hit real repositories or scheduling stack
+
